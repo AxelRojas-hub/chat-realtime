@@ -1,8 +1,11 @@
 import express,{json} from "express";
 import cors from "cors";
+import path from 'path';
+import { fileURLToPath } from 'url';
 import {randomUUID} from "crypto";
 import {firestore, rtdb} from "./db.js";
 import ViteExpress from "vite-express";
+
 
 if (process.env.NODE_ENV !== "production") {
   process.loadEnvFile('.env');
@@ -18,8 +21,14 @@ const ENV = process.env.VITE_ENVIRONMENT;
 app.use(cors());
 app.use(json());
 
+// Rutas 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const rootDir = path.resolve(__dirname, '../../');
 
-app.post("/api/signup",(req,res)=>{
+// ENDPOINTS
+
+app.post("/signup",(req,res)=>{
     const username = req.body.username;
     const name = req.body.name;
     // Parametros del where -> campo, operador, valor
@@ -166,6 +175,10 @@ app.post('/rooms/:roomID/messages',(req,res)=>{
     })
 })
 
+app.use(express.static('dist'));
+app.get('*',(req,res)=>{
+    res.sendFile(path.resolve(rootDir, 'dist', 'index.html'));
+});
 ViteExpress.listen(app, PORT as number, () =>
   console.log(`Server is listening on port ${PORT}...`, BASE_URL)
 );
