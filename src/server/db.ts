@@ -18,6 +18,7 @@ const serviceAccount = {
   universe_domain: "googleapis.com",
   client_x509_cert_url: process.env.FIREBASE_CLIENT_X509_CERT_URL,
 };
+console.log("credenciales", serviceAccount);
 admin.default.initializeApp({
     credential: admin.default.credential.cert(serviceAccount as admin.ServiceAccount),
     databaseURL: "https://nivel2-apx-default-rtdb.firebaseio.com"
