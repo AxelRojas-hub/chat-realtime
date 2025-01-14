@@ -31,7 +31,7 @@ const Chat: React.FC = () => {
 
     const getChatroomFullID = async (chatroomID: string) => {
         let userID = localStorage.getItem('userId');
-        const response = await fetch(BASE_URL+'/rooms/'+chatroomID+'?userId='+userID, {
+        const response = await fetch(BASE_URL+'/api/rooms/'+chatroomID+'?userId='+userID, {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -72,7 +72,7 @@ const Chat: React.FC = () => {
         if (message) {
             let firestoreID = chatroomID.slice(0,5);
             //Postea el msg en el chatroom
-            fetch(BASE_URL+'/rooms/'+firestoreID+'/messages',{
+            fetch(BASE_URL+'/api/rooms/'+firestoreID+'/messages',{
                 method: 'POST',
                 body: JSON.stringify({from: name, text: message}),
                 headers: {

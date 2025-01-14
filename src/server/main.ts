@@ -178,10 +178,10 @@ app.post('/api/rooms/:roomID/messages',(req,res)=>{
     })
 })
 
-// app.use(express.static('dist'));
-// app.get('*',(req,res)=>{
-//     res.sendFile(path.resolve(rootDir, 'dist', 'index.html'));
-// });
+app.use(express.static('dist'));
+app.get('*',(req,res)=>{
+    res.sendFile(path.resolve(rootDir, 'dist', 'index.html'));
+});
 ViteExpress.listen(app, PORT as number, () =>
   console.log(`Server is listening on port ${PORT}...`, BASE_URL)
 );

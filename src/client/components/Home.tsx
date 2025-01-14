@@ -29,7 +29,7 @@ const Home: React.FC = () => {
         }
     }
     const createChatroom = async () => {
-        const response = await fetch(BASE_URL+'/rooms', {
+        const response = await fetch(BASE_URL+'/api/rooms', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -42,7 +42,7 @@ const Home: React.FC = () => {
 
     const connectToChatroom = async (chatroomID: string) => {
         // /rooms/:roomId?userId=userId
-        const response = await fetch(BASE_URL+'/rooms/'+chatroomID+'?userId='+userID, {
+        const response = await fetch(BASE_URL+'/api/rooms/'+chatroomID+'?userId='+userID, {
             headers: {
                 'Content-Type': 'application/json'
             }
