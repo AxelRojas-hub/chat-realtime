@@ -58,6 +58,7 @@ const SignIn: React.FC = () => {
                 <input 
                 required
                 className='signin-form__input' 
+                placeholder='username1234'
                 type="text"
                 name='username'
                 />
@@ -66,6 +67,7 @@ const SignIn: React.FC = () => {
                 Tu nombre:
                 <input 
                 required
+                placeholder='user'
                 className='signin-form__input' 
                 type="text"
                 name='name'
