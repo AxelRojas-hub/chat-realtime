@@ -28,7 +28,7 @@ const rootDir = path.resolve(__dirname, '../../');
 
 // ENDPOINTS
 
-app.post("/api/signup",(req,res)=>{
+app.post("/signup",(req,res)=>{
     const username = req.body.username;
     const name = req.body.name;
     // Parametros del where -> campo, operador, valor
@@ -75,7 +75,7 @@ app.post("/api/signup",(req,res)=>{
         });
 })
 
-app.post('/api/auth',(req,res)=>{
+app.post('/auth',(req,res)=>{
     const {username} = req.body;
     usersCollection
         .where("username","==", username)
@@ -94,7 +94,7 @@ app.post('/api/auth',(req,res)=>{
         })
 })
 //Endpoint para crear un room
-app.post('/api/rooms',(req,res)=>{
+app.post('/rooms',(req,res)=>{
     const {userId} = req.body;
     usersCollection.doc(userId).get().then((userDoc)=>{
         if(userDoc.exists){
@@ -125,7 +125,7 @@ app.post('/api/rooms',(req,res)=>{
         }
     })
 })
-app.get('/api/rooms/:roomId',(req,res)=>{
+app.get('/rooms/:roomId',(req,res)=>{
     //El userId es un query param, se ve en el url como ?userId=123
     const {userId} = req.query;
     const {roomId} = req.params;
@@ -151,7 +151,7 @@ app.get('/api/rooms/:roomId',(req,res)=>{
         }
     })  
 })
-app.post('/api/rooms/:roomID/messages',(req,res)=>{
+app.post('/rooms/:roomID/messages',(req,res)=>{
     const {from, text} = req.body;
     const {roomID} = req.params;
     const newMessage = {
