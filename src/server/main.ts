@@ -20,6 +20,9 @@ const ENV = process.env.VITE_ENVIRONMENT;
 // Esto es para que express pueda entender el body de las peticiones
 app.use(cors());
 app.use(json());
+app.use('/api',(req,res,next)=>{
+    next();
+})
 
 // Rutas 
 const __filename = fileURLToPath(import.meta.url);
