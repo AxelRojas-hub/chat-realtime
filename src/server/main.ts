@@ -174,17 +174,22 @@ app.post('/api/rooms/:roomID/messages',(req,res)=>{
     })
 })
 
-app.use(express.static('dist'));
-app.get('*',(req,res)=>{
-    res.sendFile(path.resolve(rootDir, 'dist', 'index.html'));
+app.use(express.static(path.join(__dirname, '../../dist')));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../dist', 'index.html'), (err) => {
+        if (err) {
+        console.error('Error al servir index.html:', err);
+        res.status(500).send('Internal Server Error');
+        }
+    });
 });
 if (process.env.NODE_ENV !== "production") {
-  ViteExpress.listen(app, PORT as number, () =>
-    console.log(`Server is listening on port ${PORT}...`, BASE_URL)
-  );
+    ViteExpress.listen(app, PORT as number, () =>
+    console.log(`Server is listening on port ${PORT}...`, 'viteExpress')
+);
 } else {
-  app.listen(PORT, () =>
-    console.log(`Server is listening on port ${PORT}...`, BASE_URL)
-  );
+app.listen(PORT, () =>
+    console.log(`Server is listening on port ${PORT}...`, 'Express')
+);
 }
 
