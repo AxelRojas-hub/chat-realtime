@@ -20,7 +20,7 @@ const SignIn: React.FC = () => {
 
     const getUserId= async(username: string, name: string) =>{
         const userData = {username: username, name: name}
-        const response = await fetch(BASE_URL+'/signup', {
+        const response = await fetch('/api/signup', {
             method: 'POST',
             body: JSON.stringify(userData),
             headers: {
