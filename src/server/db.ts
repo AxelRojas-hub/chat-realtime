@@ -2,8 +2,9 @@ import { log } from 'console';
 import * as admin from 'firebase-admin';
 //Este modulo db.ts es para la conexion con la base de datos
 
-process.loadEnvFile('.env');
-
+if (process.env.NODE_ENV !== "production") {
+  process.loadEnvFile('.env');
+}
 const serviceAccount = {
   type: "service_account",
   project_id: "nivel2-apx",

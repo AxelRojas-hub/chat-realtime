@@ -4,7 +4,9 @@ import {randomUUID} from "crypto";
 import {firestore, rtdb} from "./db.js";
 import ViteExpress from "vite-express";
 
-process.loadEnvFile('.env');
+if (process.env.NODE_ENV !== "production") {
+  process.loadEnvFile('.env');
+}
 const app = express();
 const usersCollection= firestore.collection("users");
 const roomsCollection= firestore.collection("rooms");
