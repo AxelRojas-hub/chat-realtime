@@ -19,7 +19,7 @@ app.use(cors());
 app.use(json());
 
 
-app.post("/signup",(req,res)=>{
+app.post("/api/signup",(req,res)=>{
     const username = req.body.username;
     const name = req.body.name;
     // Parametros del where -> campo, operador, valor
