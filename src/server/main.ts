@@ -19,6 +19,11 @@ const BASE_URL = process.env.VITE_BASE_URL;
 app.use(cors());
 app.use(json());
 
+app.use((req, res, next) => {
+  console.log(`[DEBUG] Request URL: ${req.url}`);
+  console.log(`[DEBUG] Static files directory: ${path.join(__dirname, '../../dist')}`);
+  next();
+});
 
 // Rutas 
 const __filename = fileURLToPath(import.meta.url);
