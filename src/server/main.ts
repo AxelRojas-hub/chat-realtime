@@ -16,13 +16,9 @@ const roomsCollection= firestore.collection("rooms");
 const PORT = process.env.PORT || 3000;
 const BASE_URL = process.env.VITE_BASE_URL;
 
-const ENV = process.env.VITE_ENVIRONMENT;
-// Esto es para que express pueda entender el body de las peticiones
 app.use(cors());
 app.use(json());
-app.use('/api/',(req,res,next)=>{
-    next();
-})
+
 
 // Rutas 
 const __filename = fileURLToPath(import.meta.url);
@@ -182,6 +178,13 @@ app.use(express.static('dist'));
 app.get('*',(req,res)=>{
     res.sendFile(path.resolve(rootDir, 'dist', 'index.html'));
 });
-ViteExpress.listen(app, PORT as number, () =>
-  console.log(`Server is listening on port ${PORT}...`, BASE_URL)
-);
+if (process.env.NODE_ENV !== "production") {
+  ViteExpress.listen(app, PORT as number, () =>
+    console.log(`Server is listening on port ${PORT}...`, BASE_URL)
+  );
+} else {
+  app.listen(PORT, () =>
+    console.log(`Server is listening on port ${PORT}...`, BASE_URL)
+  );
+}
+
