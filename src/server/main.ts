@@ -20,8 +20,6 @@ app.use(cors());
 app.use(json());
 
 app.use((req, res, next) => {
-  console.log(`[DEBUG] Request URL: ${req.url}`);
-  console.log(`[DEBUG] Static files directory: ${path.join(__dirname, '../../dist')}`);
   next();
 });
 
