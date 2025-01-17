@@ -68,6 +68,7 @@
 }
 
 .chat-input__btn {
+    font-weight: 600;
     padding: 0.5rem 1rem;
     font-size: 1rem;
     border: none;
@@ -78,7 +79,8 @@
     transition: background-color 0.2s;
 }
 .chat-input__btn:hover {
-    background-color: var(--blue);
+    background-color: #fff;
+    color: var(--blue-dark);
 }
 .user-msg{
     background-color: var(--green);
