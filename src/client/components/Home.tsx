@@ -86,6 +86,7 @@ const Home: React.FC = () => {
                 <input 
                 type="text" 
                     required 
+                    autoFocus
                     className='home-form__input' 
                     name="existingRoom" 
                     placeholder='ID del room'

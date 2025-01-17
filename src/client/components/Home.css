@@ -50,7 +50,7 @@
     font-weight: bold;
     border: none;
     border-radius: 0.5rem;
-    background-color: var(--blue);
+    background-color: var(--blue-dark);
     color: #FFF;
     cursor: pointer;
     width: 100%;
@@ -59,5 +59,20 @@
 }
 
 .home-form__btn:hover {
-    background-color: var(--blue-dark);
+    background-color: var(--blue);
+}
+
+@media(prefers-color-scheme:light){
+    .home-form__label {
+        color: #242424;
+    }
+    .home-form__select{
+        color: #242424;
+        border: 2px solid #242424;
+    }
+    .home-form__input{
+        color: #242424;
+        border: 2px solid #242424;
+        border-radius: 12px;
+    }
 }

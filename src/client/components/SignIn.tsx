@@ -54,20 +54,21 @@ const SignIn: React.FC = () => {
         <h1 className='signin-title'>¡Bienvenido!</h1>
         <form className='signin-form' onSubmit={handleSubmit}>
             <label className='signin-form__label' htmlFor="usernameInput">
-                Nombre de usuario:
+                Nombre de usuario
                 <input 
                 required
+                autoFocus
                 className='signin-form__input' 
-                placeholder='username1234'
+                placeholder='Ej: nombre1234'
                 type="text"
                 name='username'
                 />
             </label>
             <label className='signin-form__label' htmlFor="nameInput">
-                Tu nombre:
+                Nombre visible
                 <input 
                 required
-                placeholder='user'
+                placeholder='Ej: Nombre'
                 className='signin-form__input' 
                 type="text"
                 name='name'

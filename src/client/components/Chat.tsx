@@ -94,7 +94,7 @@ const Chat: React.FC = () => {
                 <h1 className='chat-title'>Chat</h1>
                 <small className='chat-subtitle'>RoomID: {chatroomID.slice(0,5)}</small>
             </div>
-            <Link to={'/'}>
+            <Link to={'/'} className='chat-header__link'>
             <span className='chat-header__home'>🏠 Home</span>
             </Link>
         </div>
@@ -110,7 +110,7 @@ const Chat: React.FC = () => {
         </div>
         <form action="submit" onSubmit={handleSentMsg}>
             <div className="chat-input">
-                <input className="chat-input__field" type="text" placeholder="Escribe un mensaje..." />
+                <input className="chat-input__field" type="text" placeholder="Escribe un mensaje..." autoFocus/>
                 <button className="chat-input__btn">Enviar</button>
             </div>
         </form>

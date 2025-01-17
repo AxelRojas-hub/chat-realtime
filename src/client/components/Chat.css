@@ -18,12 +18,19 @@
 }
 .chat-header__home{
     background-color: #FFF;
+    color: black;
+    font-weight:600;
+    text-decoration: none;
     padding: 0.3rem;
     border-radius: 8px;
     transition: background-color 0.2s;
 }
 .chat-header__home:hover{
-    background-color: var(--blue);
+    background-color: var(--blue-dark);
+    color:#fff;
+}
+.chat-header__link{
+    text-decoration: none;
 }
 .chat-header-left{
     display: flex;
@@ -98,4 +105,9 @@
 }
 .guest-msg > .chat-messages__message-from{
     margin: 3px 6px;
+}
+@media(prefers-color-scheme:light){
+    .chat-header{
+        color: #FFF;
+    }
 }
