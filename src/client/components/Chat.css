@@ -46,6 +46,10 @@
     margin: 0;
     font-size: 0.7;
 }
+.chat-subtitle >strong {
+    text-decoration: underline;
+    cursor: pointer;
+}
 .chat-messages {
     flex: 1;
     display: flex;

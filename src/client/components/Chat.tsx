@@ -14,7 +14,8 @@ const Chat: React.FC = () => {
     const location = useLocation();
     const [messages, setMessages] = useState<Message[]>([])
     const [chatroomID, setChatroomID] = useState<string>('')
-    const [name, setName] = useState<string>('')
+    const [name, setName] = useState<string>('');
+    const [idCopied, setIdCopied] = useState<boolean>(false);
     
     
     // Setea los valores de location
@@ -87,12 +88,26 @@ const Chat: React.FC = () => {
             input.value = ''
         }
     }
+    const handleIdClick = ()=>{
+        navigator.clipboard.writeText(chatroomID.slice(0,5)).then(
+            () => {
+                setIdCopied(true);
+                setTimeout(() => {
+                    setIdCopied(false);
+                }, 2000);
+            }
+        );
+    }
     return (
     <div className="chat-container">
         <div className="chat-header">
             <div className="chat-header-left">
                 <h1 className='chat-title'>Chat</h1>
-                <small className='chat-subtitle'>RoomID: {chatroomID.slice(0,5)}</small>
+                <small 
+                    className='chat-subtitle' 
+                    onClick={handleIdClick}>
+                        RoomID: <strong>{chatroomID.slice(0,5)}</strong>  {!idCopied?"(Click para copiar el ID)":"ID en el portapapeles!"}
+                        </small>
             </div>
             <Link to={'/'} className='chat-header__link'>
             <span className='chat-header__home'>🏠 Home</span>
