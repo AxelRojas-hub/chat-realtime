@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import './Chat.css'
 import { Link, useLocation } from 'react-router-dom'
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { database } from '../rtdb.js'
-const BASE_URL =import.meta.env.VITE_BASE_URL;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 type Message = {
     from: string,
@@ -16,8 +16,15 @@ const Chat: React.FC = () => {
     const [chatroomID, setChatroomID] = useState<string>('')
     const [name, setName] = useState<string>('');
     const [idCopied, setIdCopied] = useState<boolean>(false);
+    const messagesEndRef = React.createRef<HTMLDivElement>();
     
-    
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages]);
     // Setea los valores de location
     useEffect(() => {
         setName(location.state.name)        
@@ -118,10 +125,13 @@ const Chat: React.FC = () => {
             Si es del usuario, va a la derecha y a color, si es de otro, a la izquierda y gris */}
             {messages.map((message, index) => (
                 <div key={index} className={`${message.from === name ? "user-msg" : "guest-msg"} chat-messages__message`} >
-                <span className="chat-messages__message-from">{message.from !== name? message.from :""}</span>
+                <span className="chat-messages__message-from">
+                    {message.from !== name && (index === 0 || messages[index - 1].from !== message.from) ? message.from : ""}
+                </span>
                 <span className="chat-messages__message-text">{message.text}</span>
                 </div>
             ))}
+            <div ref={messagesEndRef} />
         </div>
         <form action="submit" onSubmit={handleSentMsg}>
             <div className="chat-input">
